@@ -63,14 +63,18 @@ SKIP:
 
 TOKEN: /* Nombres de Comandos */
 {
-
-			<T_MOVER:  "Move">
-		| 	<T_TURNRIGHT: "TURNRIGHT">
-		| 	<T_PONER: "Put">
-		| 	<T_RECOGER: "Pick">
-		|  < T_POP: "Pop" >
-		
-
+	< MOVE: "MOVE" > //INT where n is a number or a previously defined variable
+| 	< RIGHT: "RIGHT" > //INT where n is a number or a previously defined variable
+|	< LEFT: "LEFT" > //INT where n is a number or a previously defined variable
+|	< ROTATE: "ROTATE" > //INT where n is a number or a previously defined variable
+|	< LOOK: "LOOK" > // STRING where O can be N, E, W, or S
+|	< DROP: "DROP" > // INT where n is a number or a previously defined variable
+|	< FREE: "FREE" > // INT where n is a number or a previously defined variable
+|	< PICK: "PICK" > // INT where n is a number or a previously defined variable
+|	< POP: "POP" > // INT where n is a number or a previously defined variable
+|	< CHECK: "CHECK" > // where O is either C for chips, or B for balloons, and n is a previously defined variable or a number
+|	< BLOCKEDP: "BLOCKEDP" > //Boolean
+|	< NOP: "NOP" > // The Robot doesn't do anything
 }
 
 TOKEN :
