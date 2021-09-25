@@ -11,23 +11,43 @@ public interface RobotConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int T_MOVER = 4;
+  int MOVE = 4;
   /** RegularExpression Id. */
-  int T_TURNRIGHT = 5;
+  int RIGHT = 5;
   /** RegularExpression Id. */
-  int T_PONER = 6;
+  int LEFT = 6;
   /** RegularExpression Id. */
-  int T_RECOGER = 7;
+  int ROTATE = 7;
   /** RegularExpression Id. */
-  int T_POP = 8;
+  int LOOK = 8;
   /** RegularExpression Id. */
-  int T_BALLOONS = 9;
+  int DROP = 9;
   /** RegularExpression Id. */
-  int T_CHIPS = 10;
+  int FREE = 10;
   /** RegularExpression Id. */
-  int NUMERO = 11;
+  int PICK = 11;
   /** RegularExpression Id. */
-  int DIGIT = 12;
+  int POP = 12;
+  /** RegularExpression Id. */
+  int CHECK = 13;
+  /** RegularExpression Id. */
+  int BLOCKEDP = 14;
+  /** RegularExpression Id. */
+  int NOP = 15;
+  /** RegularExpression Id. */
+  int BLOCK = 16;
+  /** RegularExpression Id. */
+  int REPEAT = 17;
+  /** RegularExpression Id. */
+  int IF = 18;
+  /** RegularExpression Id. */
+  int DEFINE = 19;
+  /** RegularExpression Id. */
+  int TO = 20;
+  /** RegularExpression Id. */
+  int NUMERO = 21;
+  /** RegularExpression Id. */
+  int DIGIT = 22;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -38,19 +58,25 @@ public interface RobotConstants {
     "\" \"",
     "\"\\r\"",
     "\"\\t\"",
-    "\"Move\"",
-    "\"TURNRIGHT\"",
-    "\"Put\"",
-    "\"Pick\"",
-    "\"Pop\"",
-    "\"BALLOONS\"",
-    "\"CHIPS\"",
+    "\"MOVE\"",
+    "\"RIGHT\"",
+    "\"LEFT\"",
+    "\"ROTATE\"",
+    "\"LOOK\"",
+    "\"DROP\"",
+    "\"FREE\"",
+    "\"PICK\"",
+    "\"POP\"",
+    "\"CHECK\"",
+    "\"BLOCKEDP\"",
+    "\"NOP\"",
+    "\"BLOCK\"",
+    "\"REPEAT\"",
+    "\"IF\"",
+    "\"DEFINE\"",
+    "\"TO\"",
     "<NUMERO>",
     "<DIGIT>",
-    "\"(\"",
-    "\")\"",
-    "\"\\n\"",
-    "\",\"",
   };
 
 }

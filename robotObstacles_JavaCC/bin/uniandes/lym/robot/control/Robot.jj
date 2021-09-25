@@ -36,11 +36,12 @@ import java.awt.Point;
 import java.io.*;
 import java.util.Vector;
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Robot 
 {
-
+	ArrayList<String > varDefinidas = new ArrayList(); // Variables definidas
 
 	private RobotWorldDec world;
 	
@@ -58,7 +59,7 @@ SKIP:
 	" "
 	|	"\r"
 	|	"\t"
-//	| "\n"
+//	| "\n" el new line es necesario para los bloques.
 }
 
 TOKEN: /* Nombres de Comandos */
@@ -77,11 +78,31 @@ TOKEN: /* Nombres de Comandos */
 |	< NOP: "NOP" > // The Robot doesn't do anything
 }
 
-TOKEN :
-{
-		<T_BALLOONS:  "BALLOONS" >
-		|	<T_CHIPS:     "CHIPS"  >	
 
+
+TOKEN: /* Nombres de Comandos Especiales*/
+{
+	< BLOCK: "BLOCK" > // (BLOCK commands) where commands is simply a sequence of one or more commands (separated by new lines)
+|	< REPEAT: "REPEAT" > /*
+REPEAT n [commands], where n is a variable or a number
+describing the number of times the commands inside the [] will repeat, and
+commands is a sequence of basic commands separated by new lines
+*/
+| 	< IF: "IF" > /*
+IF expr [ commands ], where expr is a boolean ex-
+pression, and commands is a sequence of basic commands separated by new
+lines
+*/
+| 	< DEFINE: "DEFINE" > /*
+DEFINE n val – defines a new variable n assigning it value val (an integer).
+Note that variable names need to be lowercase
+*/
+| < TO: "TO" > /*
+TO f :param OUTPUT expression END. Functions are defined between the TO
+and END keywords, giving them a name f and a list of space separated parame-
+ters each defined by the colons before its name (as in :param). The inner works
+of a function are given as an expression or block of commands in its OUTPUT.
+*/
 }
 
 
@@ -92,86 +113,11 @@ TOKEN :
 }
 
 
-	boolean command(StringBuffer sistema) :
-	{	
-		
-		int x;
-		salida=new String();
-		
-	}
-	
+boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarla.
+{}
+{
 	{
-		(
-		   <T_TURNRIGHT> "(" ")" {world.turnRight();salida = "Command: Turnright";}
-		| 	<T_MOVER>  "(" x=numero() ")" {world.moveForward(x);salida = "Command: Moveforward ";}  
-		|  <T_PONER> "("  objetoPoner() ")"					  			
-		|  <T_RECOGER> "("  objetoRecoger()  ")"	
-	    |  < T_POP > "(" x=numero() ")" {world.popBalloons(x); salida = "Comando:  Pop";}
-		) "\n" 
-
-		{
-		  //  try {
-	    	//		 Thread.sleep(1);
-	    	  //   } catch (InterruptedException e) {
-	    		//	        System.err.format("IOException: %s%n", e);
-	    		//	    }
-	    			 
-			sistema.append(salida);
-			return true;
-		}
-
-     |  "\n" { return true; }
-
-		| <EOF> {return false;} 
-	}
-
-	void objetoPoner() :
-	{
-		int f=1;	
-	}
-	{
-		( <T_CHIPS>    "," f=numero() {world.putChips(f); salida = "Command:  Put Chips"; })
-		|  	  ( <T_BALLOONS>   "," f=numero() {world.putBalloons(f); salida = "Command:  Put Balloons";})	 
-
-	}
-
-	void objetoRecoger() :
-	{
-		int f=1;	
-	}
-	{
-		( <T_CHIPS>   "," f=numero() {world.pickChips(f);salida = "Command:  Pick chips";})
-		|  	  ( <T_BALLOONS>   "," f=numero() {world.grabBalloons(f);salida="Command:  Pick balloons";})	 
-
-	}
-
-	
-	
-
-	/**
-	 *  reconoce un numero entero sin signo
-	 * @return el valor entero correspondiente al valor reconocido
-	 */
-
-	int numero() throws Error:
-	{	
-		int total=1;
-	}
-	{
-		<NUMERO>
-		{
-			try 
-			{
-				total = Integer.parseInt(token.image);
-			} 
-			catch (NumberFormatException ee) 
-			{
-				// Dada la forma de NUMERO, sabemos que solo puede tener d�gitos
-				// Por lo tanto, lo unico que podria pasar es que el numero sea muy grande
-				throw new Error("Number out of bounds: "+token.image+"!!");
-			}
-			return total;
-		}
-	}
-
-	
+	  
+	return true;
+}
+}
