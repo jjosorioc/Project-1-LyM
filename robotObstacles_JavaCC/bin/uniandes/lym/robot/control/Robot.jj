@@ -270,6 +270,49 @@ void pop():
 }
 
 
+void check():
+{
+	ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("C", "B"));
+}
+{
+	< CHECK > " " < ID >
+	{
+		if(!(charValidos.contains(token.image)))
+		{
+			throw new Error("\""+ token.image + "\"" + " should be \"C\" or \"B\"!");
+		}
+	}
+	" "
+	(< NUMERO >
+| 	(< ID >
+{
+  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  {
+  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
+  	  throw new Error("\""+ token.image + "\"" + " is not defined!");
+  	}
+ })
+)
+}
+
+
+// BLOCKEDP
+
+
+// NOP
+
+
+void block():
+{}
+{
+	"(" < BLOCK >
+
+	// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
+
+	")" // Final de paréntesis
+}
+
+
 // Coso raro que es como el start symbol
 boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarla.
 {}
@@ -277,6 +320,7 @@ boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarl
 	(	  
 	  move()
 | 	  look()
+|		check()
 	 
 	  
 	{return true;}

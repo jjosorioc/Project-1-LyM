@@ -83,6 +83,8 @@ public interface RobotConstants {
     "<LETRAS>",
     "<ID>",
     "\" \"",
+    "\"(\"",
+    "\")\"",
   };
 
 }
