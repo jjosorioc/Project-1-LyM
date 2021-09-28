@@ -71,7 +71,7 @@ SKIP:
 	//" "
 	 "\r"
 	|"\t"
-//	|"\n" el new line es necesario para los bloques.
+//	|"\n" //el new line es necesario para los bloques.
 }
 
 TOKEN: /* Nombres de Comandos */
@@ -399,17 +399,39 @@ void comandosMain(): // Todos los comandos separados por nuevas líneas, como ap
 	 move()
 | 	 right()
 | 	 left()
-
+| 	 rotate()
+| 	 look()
+| 	 drop()
+| 	 free()
+| 	 pick()
+| 	 pop()
+| 	 check()
+| 	 block()
+| 	 repeat()
+| 	 ifCommand()
+| 	 define()
+| 	 to()
 // FIN
 	)
 
 
 
-  (
-	"\n" move()
-| 	"\n" right()
-| 	"\n" left()
-
+	(
+	 move()
+| 	 right()
+| 	 left()
+| 	 rotate()
+| 	 look()
+| 	 drop()
+| 	 free()
+| 	 pick()
+| 	 pop()
+| 	 check()
+| 	 block()
+| 	 repeat()
+| 	 ifCommand()
+| 	 define()
+| 	 to()
 // FIN
 	)*
 }
