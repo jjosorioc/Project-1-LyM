@@ -71,7 +71,7 @@ SKIP:
 	//" "
 	 "\r"
 	|"\t"
-//	|"\n" //el new line es necesario para los bloques.
+	|"\n" //el new line es necesario para los bloques.
 }
 
 TOKEN: /* Nombres de Comandos */
@@ -115,6 +115,7 @@ and END keywords, giving them a name f and a list of space separated parame-
 ters each defined by the colons before its name (as in :param). The inner works
 of a function are given as an expression or block of commands in its OUTPUT.
 */
+| 	< OUTPUT: "OUTPUT" >
 | 	< END: "END" >
 }
 
@@ -310,9 +311,10 @@ void check():
 void block():
 {}
 {
-	"(" < BLOCK >
+	"(" < BLOCK > " "
 
 	// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
+	comandosMain()
 
 	")" // Final de paréntesis
 }
@@ -338,6 +340,7 @@ void repeat():
 
 	"["
 		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
+		comandosMain()
 	"]"
 }
 
@@ -376,8 +379,9 @@ void define():
 void to(): // TODO: Aceptar recursividad
 {}
 {
-	< TO > " " < ID > (":"< ID > (" :" < ID >)*)? // TODO: Revisar parámetros
-	"\n"
+	< TO > " " < ID > (" :"< ID > (" :" < ID >)*)? // TODO: Revisar parámetros
+	< OUTPUT >
+	//"\n"
 	// Expresión : comandos sin paréntesis al inicio y final, separados por una nueva línea
 	/*
 TO foo : c : p
@@ -387,7 +391,7 @@ TO foo : c : p
  	MOVE one
  END
 	*/
-	"\n"
+	//"\n"
 	< END >
 }
 

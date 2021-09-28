@@ -11,49 +11,51 @@ public interface RobotConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int MOVE = 3;
+  int MOVE = 4;
   /** RegularExpression Id. */
-  int RIGHT = 4;
+  int RIGHT = 5;
   /** RegularExpression Id. */
-  int LEFT = 5;
+  int LEFT = 6;
   /** RegularExpression Id. */
-  int ROTATE = 6;
+  int ROTATE = 7;
   /** RegularExpression Id. */
-  int LOOK = 7;
+  int LOOK = 8;
   /** RegularExpression Id. */
-  int DROP = 8;
+  int DROP = 9;
   /** RegularExpression Id. */
-  int FREE = 9;
+  int FREE = 10;
   /** RegularExpression Id. */
-  int PICK = 10;
+  int PICK = 11;
   /** RegularExpression Id. */
-  int POP = 11;
+  int POP = 12;
   /** RegularExpression Id. */
-  int CHECK = 12;
+  int CHECK = 13;
   /** RegularExpression Id. */
-  int BLOCKEDP = 13;
+  int BLOCKEDP = 14;
   /** RegularExpression Id. */
-  int NOP = 14;
+  int NOP = 15;
   /** RegularExpression Id. */
-  int BLOCK = 15;
+  int BLOCK = 16;
   /** RegularExpression Id. */
-  int REPEAT = 16;
+  int REPEAT = 17;
   /** RegularExpression Id. */
-  int IF = 17;
+  int IF = 18;
   /** RegularExpression Id. */
-  int DEFINE = 18;
+  int DEFINE = 19;
   /** RegularExpression Id. */
-  int TO = 19;
+  int TO = 20;
   /** RegularExpression Id. */
-  int END = 20;
+  int OUTPUT = 21;
   /** RegularExpression Id. */
-  int NUMERO = 21;
+  int END = 22;
   /** RegularExpression Id. */
-  int DIGIT = 22;
+  int NUMERO = 23;
   /** RegularExpression Id. */
-  int LETRAS = 23;
+  int DIGIT = 24;
   /** RegularExpression Id. */
-  int ID = 24;
+  int LETRAS = 25;
+  /** RegularExpression Id. */
+  int ID = 26;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -63,6 +65,7 @@ public interface RobotConstants {
     "<EOF>",
     "\"\\r\"",
     "\"\\t\"",
+    "\"\\n\"",
     "\"MOVE\"",
     "\"RIGHT\"",
     "\"LEFT\"",
@@ -80,6 +83,7 @@ public interface RobotConstants {
     "\"IF\"",
     "\"DEFINE\"",
     "\"TO\"",
+    "\"OUTPUT\"",
     "\"END\"",
     "<NUMERO>",
     "<DIGIT>",
@@ -90,9 +94,7 @@ public interface RobotConstants {
     "\")\"",
     "\"[\"",
     "\"]\"",
-    "\":\"",
     "\" :\"",
-    "\"\\n\"",
   };
 
 }
