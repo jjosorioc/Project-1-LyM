@@ -29,7 +29,7 @@ options
 {
 	LOOKAHEAD=2;
 	FORCE_LA_CHECK = true; // salen dos warnings de: Choice conflict involving two expansions at...
-	IGNORE_CASE=true;
+	IGNORE_CASE = false;
 	STATIC = false;
 	
 }
