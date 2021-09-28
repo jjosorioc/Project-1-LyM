@@ -27,7 +27,8 @@ Luis Alejandro Rubiano
 
 options 
 {
-	LOOKAHEAD=1; 
+	LOOKAHEAD=2;
+	FORCE_LA_CHECK = true; // salen dos warnings de: Choice conflict involving two expansions at...
 	IGNORE_CASE=true;
 	STATIC = false;
 	
@@ -391,15 +392,35 @@ TO foo : c : p
 }
 
 
+void comandosMain(): // Todos los comandos separados por nuevas líneas, como aparecería en la interfaz
+{ }
+{
+	(
+	 move()
+| 	 right()
+| 	 left()
+
+// FIN
+	)
+
+
+
+  (
+	"\n" move()
+| 	"\n" right()
+| 	"\n" left()
+
+// FIN
+	)*
+}
+
+
 // Coso raro que es como el start symbol
 boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarla.
 {}
 {
 	(	  
-	  "\n" move()
-| 	  look()
-|		check()
-| 	define()
+	comandosMain()
 	 
 	  
 	{return true;}
