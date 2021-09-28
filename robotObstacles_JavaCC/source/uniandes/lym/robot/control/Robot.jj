@@ -45,11 +45,14 @@ import java.util.Vector;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class Robot 
 {
-	ArrayList<String > varDefinidas = new ArrayList(); // Variables definidas
+	// ArrayList<String > varDefinidas = new ArrayList(); // Variables definidas
+
+	HashMap<String, Integer > varDefinidas = new HashMap<String, Integer >();
 
 	private RobotWorldDec world;
 	
@@ -111,6 +114,7 @@ and END keywords, giving them a name f and a list of space separated parame-
 ters each defined by the colons before its name (as in :param). The inner works
 of a function are given as an expression or block of commands in its OUTPUT.
 */
+| 	< END: "END" >
 }
 
 
@@ -132,7 +136,7 @@ void move():
   < MOVE > " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -148,7 +152,7 @@ void right():
 	< RIGHT > " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -164,7 +168,7 @@ void left():
 	< LEFT > " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -180,7 +184,7 @@ void rotate():
 	< ROTATE > " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -212,7 +216,7 @@ void drop():
 	< DROP> " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -228,7 +232,7 @@ void free():
 	< FREE > " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -244,7 +248,7 @@ void pick():
 	< PICK > " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -260,7 +264,7 @@ void pop():
 	< POP > " " (< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -286,7 +290,7 @@ void check():
 	(< NUMERO >
 | 	(< ID >
 {
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
@@ -313,14 +317,89 @@ void block():
 }
 
 
+void repeat():
+{}
+{
+	< REPEAT > " "
+	(		< NUMERO >
+| 		(			< ID >
+			{
+  				if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
+  					{
+					  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
+					  	  throw new Error("\""+ token.image + "\"" + " is not defined!");
+				  	}
+			 }
+		)
+	)
+
+	" "
+
+	"["
+		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
+	"]"
+}
+
+
+void ifCommand():
+{}
+{
+	< IF > " " < BLOCKEDP > " "
+	"["
+		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
+		// TODO: Conectar con robot mate
+	"]"
+}
+
+
+void define():
+{
+	String llave = "";
+	int valor = 0;
+}
+{
+	< DEFINE > " " < ID >
+	{
+	  llave = token.image;
+	}
+
+
+	" " < NUMERO >
+	{
+	  valor = Integer.parseInt(token.image);
+	  varDefinidas.put(llave, valor);
+	}
+}
+
+
+void to(): // TODO: Aceptar recursividad
+{}
+{
+	< TO > " " < ID > (":"< ID > (" :" < ID >)*)? // TODO: Revisar parámetros
+	"\n"
+	// Expresión : comandos sin paréntesis al inicio y final, separados por una nueva línea
+	/*
+TO foo : c : p
+ OUTPUT
+ 	DROP : c
+ 	FREE : p
+ 	MOVE one
+ END
+	*/
+	"\n"
+	< END >
+}
+
+
 // Coso raro que es como el start symbol
 boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarla.
 {}
 {
 	(	  
-	  move()
+	  "\n" move()
 | 	  look()
 |		check()
+| 	define()
 	 
 	  
 	{return true;}

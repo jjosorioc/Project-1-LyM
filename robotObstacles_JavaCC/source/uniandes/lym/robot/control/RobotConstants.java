@@ -45,13 +45,15 @@ public interface RobotConstants {
   /** RegularExpression Id. */
   int TO = 19;
   /** RegularExpression Id. */
-  int NUMERO = 20;
+  int END = 20;
   /** RegularExpression Id. */
-  int DIGIT = 21;
+  int NUMERO = 21;
   /** RegularExpression Id. */
-  int LETRAS = 22;
+  int DIGIT = 22;
   /** RegularExpression Id. */
-  int ID = 23;
+  int LETRAS = 23;
+  /** RegularExpression Id. */
+  int ID = 24;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -78,6 +80,7 @@ public interface RobotConstants {
     "\"IF\"",
     "\"DEFINE\"",
     "\"TO\"",
+    "\"END\"",
     "<NUMERO>",
     "<DIGIT>",
     "<LETRAS>",
@@ -85,6 +88,11 @@ public interface RobotConstants {
     "\" \"",
     "\"(\"",
     "\")\"",
+    "\"[\"",
+    "\"]\"",
+    "\":\"",
+    "\" :\"",
+    "\"\\n\"",
   };
 
 }

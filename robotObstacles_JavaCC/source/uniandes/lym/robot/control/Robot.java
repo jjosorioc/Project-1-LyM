@@ -8,10 +8,13 @@ import java.util.Vector;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public class Robot implements RobotConstants {
-        ArrayList<String > varDefinidas = new ArrayList(); // Variables definidas
+        // ArrayList<String > varDefinidas = new ArrayList(); // Variables definidas
+
+        HashMap<String, Integer > varDefinidas = new HashMap<String, Integer >();
 
         private RobotWorldDec world;
 
@@ -25,14 +28,14 @@ public class Robot implements RobotConstants {
 // RP de movimientos
   final public void move() throws ParseException {
     jj_consume_token(MOVE);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -47,14 +50,14 @@ public class Robot implements RobotConstants {
 
   final public void right() throws ParseException {
     jj_consume_token(RIGHT);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -69,14 +72,14 @@ public class Robot implements RobotConstants {
 
   final public void left() throws ParseException {
     jj_consume_token(LEFT);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -91,14 +94,14 @@ public class Robot implements RobotConstants {
 
   final public void rotate() throws ParseException {
     jj_consume_token(ROTATE);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -114,7 +117,7 @@ public class Robot implements RobotConstants {
   final public void look() throws ParseException {
         ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("N", "S", "E", "W"));
     jj_consume_token(LOOK);
-    jj_consume_token(24);
+    jj_consume_token(25);
     jj_consume_token(ID);
         if (!(charValidos.contains(token.image))) // Check if CHAR is in charValidos
         {
@@ -124,14 +127,14 @@ public class Robot implements RobotConstants {
 
   final public void drop() throws ParseException {
     jj_consume_token(DROP);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -146,14 +149,14 @@ public class Robot implements RobotConstants {
 
   final public void free() throws ParseException {
     jj_consume_token(FREE);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -168,14 +171,14 @@ public class Robot implements RobotConstants {
 
   final public void pick() throws ParseException {
     jj_consume_token(PICK);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -190,14 +193,14 @@ public class Robot implements RobotConstants {
 
   final public void pop() throws ParseException {
     jj_consume_token(POP);
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -213,20 +216,20 @@ public class Robot implements RobotConstants {
   final public void check() throws ParseException {
         ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("C", "B"));
     jj_consume_token(CHECK);
-    jj_consume_token(24);
+    jj_consume_token(25);
     jj_consume_token(ID);
                 if(!(charValidos.contains(token.image)))
                 {
                         {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " should be \u005c"C\u005c" or \u005c"B\u005c"!");}
                 }
-    jj_consume_token(24);
+    jj_consume_token(25);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case NUMERO:
       jj_consume_token(NUMERO);
       break;
     case ID:
       jj_consume_token(ID);
-  if(!(varDefinidas.contains(token.image)))// Check if token.image is in the Array
+  if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
           // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
           {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
@@ -244,19 +247,99 @@ public class Robot implements RobotConstants {
 
 // NOP
   final public void block() throws ParseException {
-    jj_consume_token(25);
-    jj_consume_token(BLOCK);
     jj_consume_token(26);
+    jj_consume_token(BLOCK);
+    jj_consume_token(27);
+  }
+
+  final public void repeat() throws ParseException {
+    jj_consume_token(REPEAT);
+    jj_consume_token(25);
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case NUMERO:
+      jj_consume_token(NUMERO);
+      break;
+    case ID:
+      jj_consume_token(ID);
+                                if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
+                                        {
+                                                  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
+                                                  {if (true) throw new Error("\u005c""+ token.image + "\u005c"" + " is not defined!");}
+                                        }
+      break;
+    default:
+      jj_la1[9] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+    jj_consume_token(25);
+    jj_consume_token(28);
+    jj_consume_token(29);
+  }
+
+  final public void ifCommand() throws ParseException {
+    jj_consume_token(IF);
+    jj_consume_token(25);
+    jj_consume_token(BLOCKEDP);
+    jj_consume_token(25);
+    jj_consume_token(28);
+    jj_consume_token(29);
+  }
+
+  final public void define() throws ParseException {
+        String llave = "";
+        int valor = 0;
+    jj_consume_token(DEFINE);
+    jj_consume_token(25);
+    jj_consume_token(ID);
+          llave = token.image;
+    jj_consume_token(25);
+    jj_consume_token(NUMERO);
+          valor = Integer.parseInt(token.image);
+          varDefinidas.put(llave, valor);
+  }
+
+  final public void to() throws ParseException {
+    jj_consume_token(TO);
+    jj_consume_token(25);
+    jj_consume_token(ID);
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case 30:
+      jj_consume_token(30);
+      jj_consume_token(ID);
+      label_1:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case 31:
+          ;
+          break;
+        default:
+          jj_la1[10] = jj_gen;
+          break label_1;
+        }
+        jj_consume_token(31);
+        jj_consume_token(ID);
+      }
+      break;
+    default:
+      jj_la1[11] = jj_gen;
+      ;
+    }
+    jj_consume_token(32);
+    jj_consume_token(32);
+    jj_consume_token(END);
   }
 
 // Coso raro que es como el start symbol
   final public boolean command(StringBuffer sistema) throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case MOVE:
     case LOOK:
     case CHECK:
+    case DEFINE:
+    case 32:
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case MOVE:
+      case 32:
+        jj_consume_token(32);
         move();
         break;
       case LOOK:
@@ -264,10 +347,13 @@ public class Robot implements RobotConstants {
         break;
       case CHECK:
         check();
+        break;
+      case DEFINE:
+        define();
          {if (true) return true;}
         break;
       default:
-        jj_la1[9] = jj_gen;
+        jj_la1[12] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -277,7 +363,7 @@ public class Robot implements RobotConstants {
           {if (true) return false;}
       break;
     default:
-      jj_la1[10] = jj_gen;
+      jj_la1[13] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -293,13 +379,18 @@ public class Robot implements RobotConstants {
   public Token jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[11];
+  final private int[] jj_la1 = new int[14];
   static private int[] jj_la1_0;
+  static private int[] jj_la1_1;
   static {
       jj_la1_init_0();
+      jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x900000,0x900000,0x900000,0x900000,0x900000,0x900000,0x900000,0x900000,0x900000,0x1088,0x1089,};
+      jj_la1_0 = new int[] {0x1200000,0x1200000,0x1200000,0x1200000,0x1200000,0x1200000,0x1200000,0x1200000,0x1200000,0x1200000,0x80000000,0x40000000,0x41080,0x41081,};
+   }
+   private static void jj_la1_init_1() {
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x1,};
    }
 
   /** Constructor with InputStream. */
@@ -313,7 +404,7 @@ public class Robot implements RobotConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 14; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -327,7 +418,7 @@ public class Robot implements RobotConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 14; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -337,7 +428,7 @@ public class Robot implements RobotConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 14; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -347,7 +438,7 @@ public class Robot implements RobotConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 14; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -356,7 +447,7 @@ public class Robot implements RobotConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 14; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -365,7 +456,7 @@ public class Robot implements RobotConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 14; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -416,21 +507,24 @@ public class Robot implements RobotConstants {
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[27];
+    boolean[] la1tokens = new boolean[33];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 14; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
             la1tokens[j] = true;
           }
+          if ((jj_la1_1[i] & (1<<j)) != 0) {
+            la1tokens[32+j] = true;
+          }
         }
       }
     }
-    for (int i = 0; i < 27; i++) {
+    for (int i = 0; i < 33; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
