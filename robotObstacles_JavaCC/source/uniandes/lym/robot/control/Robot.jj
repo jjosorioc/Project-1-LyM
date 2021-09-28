@@ -65,9 +65,9 @@ PARSER_END(Robot)
 SKIP:
 {
 	//" "
-	"\r"
-	|	"\t"
-//	| "\n" el new line es necesario para los bloques.
+	 "\r"
+	|"\t"
+//	|"\n" el new line es necesario para los bloques.
 }
 
 TOKEN: /* Nombres de Comandos */
