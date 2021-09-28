@@ -352,6 +352,7 @@ void ifCommand():
 	"["
 		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
 		// TODO: Conectar con robot mate
+		comandosMain()
 	"]"
 }
 
@@ -410,6 +411,7 @@ void comandosMain(): // Todos los comandos separados por nuevas líneas, como ap
 | 	 pick()
 | 	 pop()
 | 	 check()
+| 	 < NOP >
 | 	 block()
 | 	 repeat()
 | 	 ifCommand()
@@ -431,6 +433,7 @@ void comandosMain(): // Todos los comandos separados por nuevas líneas, como ap
 | 	 pick()
 | 	 pop()
 | 	 check()
+| 	 < NOP >
 | 	 block()
 | 	 repeat()
 | 	 ifCommand()
