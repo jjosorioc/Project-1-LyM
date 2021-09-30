@@ -55,6 +55,8 @@ public class Robot
 
 	HashMap<String, Integer > varDefinidas = new HashMap<String, Integer >();
 
+	HashMap<String, String > funcDefinidas = new HashMap<String, String >();
+
 	private RobotWorldDec world;
 	
 	
@@ -72,7 +74,7 @@ SKIP:
 	| "    "
 	|  "\r"
 	|"\t"
-//	|"\n" //TODO: Check
+//	|"\n" 
 }
 
 TOKEN: /* Nombres de Comandos */
@@ -317,8 +319,8 @@ void block():
 {
 	"(" < BLOCK > 
 
-	// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
-	 comandosMain() (comandosMain())*
+	
+	 (comandosMain())+
 
 	
 	(")"|("\n")+ ")") // Final de paréntesis
@@ -344,8 +346,8 @@ void repeat():
 	
 
 	"["
-		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
-		comandosMain()
+		
+		(comandosMain())+
 	"]"
 }
 
@@ -353,11 +355,11 @@ void repeat():
 void ifCommand():
 {}
 {
-	< IF > ("!")? < BLOCKEDP > 
+	< IF > ("!")? < BLOCKEDP > // TODO: Aceptar !
 	"["
-		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
+		
 		// TODO: Conectar con robot mate
-		comandosMain() (comandosMain())*
+		(comandosMain())+
 	"]"
 }
 
@@ -387,9 +389,25 @@ void to(): // TODO: Aceptar recursividad
 	ArrayList<String > paramsArray = new ArrayList<String>();
 }
 {
-	< TO >  < ID > (< PARAM >)* // TODO: Revisar parámetros
+	< TO >  < ID >
+	// Agregar el nombre de la función al hashMap
+	{
+		funcDefinidas.put(token.image, "Works");
+		System.out.println(funcDefinidas.toString());
+	}
+
+
+	(< PARAM >)* // TODO: Revisar parámetros
 	("\n")*< OUTPUT >
-	(comandosMain())+//TODO: params en cada funcion
+	
+	(comandosMain() // TODO: Crear NT para guardar tokens.
+	{
+		paramsArray.add(token.image);
+		System.out.println(paramsArray.toString());
+
+	}
+
+	)+
 	("\n")* < END >
 }
 
