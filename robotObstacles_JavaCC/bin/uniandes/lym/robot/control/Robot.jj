@@ -141,14 +141,21 @@ void move():
 {}
 {
   < MOVE >  (< NUMERO >
+	{
+		world.moveForward(Integer.parseInt(token.image));
+	}
+
+  
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
-  	}
- }
+  }else{
+		world.moveForward(varDefinidas.get(token.image)); // Move the robot
+		}
+  
+}
 | < PARAM >)
 )
 }
@@ -158,14 +165,20 @@ void right():
 { }
 {
 	< RIGHT >  (< NUMERO >
+//	{
+//	  int grados = Integer.parseInt(token.image);
+//		if (0 <= grados and
+//	}
+
+  
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
-  	}
- }
+  }
+  
+}
 | < PARAM >))
 }
 
@@ -174,19 +187,26 @@ void left():
 { }
 {
 	< LEFT >  (< NUMERO >
+	{
+		world.moveForward(Integer.parseInt(token.image));
+	}
+
+  
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
-  	}
- }
+  }else{
+		world.moveForward(varDefinidas.get(token.image)); // Move the robot
+		}
+  
+}
 | < PARAM >))
 }
 
 
-void rotate():
+void rotate(): //TODO
 { }
 {
 	< ROTATE >  (< NUMERO >
@@ -205,6 +225,11 @@ void rotate():
 void look():
 {
 	ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("N", "S", "E", "W"));
+	HashMap<String, Integer > faceL = new HashMap<String, Integer >();
+	faceL.put("N",0);
+	faceL.put("S",1);
+	faceL.put("E",2);
+	faceL.put("W",3);
 }
 {
 	< LOOK >  < ID >
@@ -214,6 +239,20 @@ void look():
 	{
 		throw new Error("\""+ token.image + "\"" + " should be either \"N\", \"S\", \"E\", \"W\"!");
 	}
+	else
+	{
+		boolean centinela = true;
+		while (centinela)
+		{
+			if (world.getFacing() != faceL.get(token.image))
+			{
+				world.turnRight();	
+			}
+			else { centinela = false; }
+
+		}
+
+	 }
 
 	}
 }
@@ -222,12 +261,19 @@ void drop():
 { }
 {
 	< DROP>  (< NUMERO >
+	{
+		world.putChips(Integer.parseInt(token.image));
+	}
+
+	
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
-  {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
+    {
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
+  	}else
+  	{
+		world.putChips(varDefinidas.get(token.image));
   	}
  }
 | < PARAM >))
@@ -238,12 +284,17 @@ void free():
 { }
 {
 	< FREE >  (< NUMERO >
+	{
+		world.putBalloons(Integer.parseInt(token.image));
+	}	
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
-  {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
-  	  throw new Error("\""+ token.image + "\"" + " is not defined!");
+    {
+  	 	throw new Error("\""+ token.image + "\"" + " is not defined!");
+  	}else
+  	{
+		world.putBalloons(varDefinidas.get(token.image));
   	}
  }
 | < PARAM >))
@@ -254,12 +305,17 @@ void pick():
 { }
 {
 	< PICK >  (< NUMERO >
+	{
+		world.pickChips(Integer.parseInt(token.image));
+	}
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
-  {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
-  	  throw new Error("\""+ token.image + "\"" + " is not defined!");
+    {
+  	 	throw new Error("\""+ token.image + "\"" + " is not defined!");
+  	}else
+  	{
+		world.pickChips(varDefinidas.get(token.image));
   	}
  }
 | < PARAM >))
@@ -270,21 +326,27 @@ void pop():
 { }
 {
 	< POP >  (< NUMERO >
+	{
+	 	world.popBalloons(Integer.parseInt(token.image));
+	}
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
-  {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
+    {
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
+  	}else
+  	{
+		world.popBalloons(varDefinidas.get(token.image));
   	}
  }
 | < PARAM >))
 }
 
 
-void check():
+boolean check():// TODO: retorna un boolean?
 {
 	ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("C", "B"));
+	String opcion = "";
 }
 {
 	< CHECK >  < ID >
@@ -292,23 +354,77 @@ void check():
 		if(!(charValidos.contains(token.image)))
 		{
 			throw new Error("\""+ token.image + "\"" + " should be \"C\" or \"B\"!");
-		}
+		}else // Guardar la opción entre C o B
+		{
+		  	opcion = token.image;
+		 }
 	}
 	
 	(< NUMERO >
+	{
+		if (opcion.equals("B")) // contar Balloons
+		{
+		  	return (Integer.parseInt(token.image) == world.countBalloons());
+		 }else // contar chips
+		 {
+		   	return (Integer.parseInt(token.image) == world.chipsToPick());
+		  }
+	}
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
-  {
-  	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
+    {
+  	  
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
-  	}
+  	}else
+  	{
+		if (opcion.equals("B")) // contar Balloons
+		{
+		  	return (varDefinidas.get(token.image) == world.countBalloons());
+		 }else // contar chips
+		 {
+		   	return (varDefinidas.get(token.image) == world.chipsToPick());
+		  }
+  	 }
  }
 | < PARAM >))
 }
 
 
-// BLOCKEDP
+/**
+*@returns boolean, true if Robot is blocked.
+*/
+boolean blockedp():
+{ }
+{
+  	< BLOCKEDP >
+	{
+		int direccion = world.getFacing(); // direcció del Robot
+		Point puntoR = world.getPosition(); // Punto en el que se encuentra el Robot
+
+		// Según su dirección se calcula el punto "al frente"
+		if (direccion == 0)
+		{
+		  System.out.println(world.isBlocked(new Point(puntoR.x, puntoR.y - 1)));
+		  return (world.isBlocked(new Point(puntoR.x, puntoR.y - 1)));
+		}
+		else if (direccion == 1)
+		{
+		  System.out.println(world.isBlocked(new Point(puntoR.x, puntoR.y + 1)));
+		  return (world.isBlocked(new Point(puntoR.x, puntoR.y + 1)));
+		}
+		else if (direccion == 2)
+		{
+		  System.out.println(world.isBlocked(new Point(puntoR.x + 1, puntoR.y)));
+		  return (world.isBlocked(new Point(puntoR.x + 1, puntoR.y)));
+		}
+		else if (direccion == 3)
+		{
+		  System.out.println(world.isBlocked(new Point(puntoR.x - 1, puntoR.y)));
+		  return (world.isBlocked(new Point(puntoR.x - 1, puntoR.y)));
+		}
+	}
+}
 
 
 // NOP
@@ -355,7 +471,7 @@ void repeat():
 void ifCommand():
 {}
 {
-	< IF > ("!")? < BLOCKEDP > // TODO: Aceptar !
+	< IF > ("!")? blockedp() // TODO: Aceptar !
 	"["
 		
 		// TODO: Conectar con robot mate
