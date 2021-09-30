@@ -374,7 +374,6 @@ void define():
 	{
 	  valor = Integer.parseInt(token.image);
 	  varDefinidas.put(llave, valor);
-	  System.out.println(varDefinidas.toString());
 	}
 }
 

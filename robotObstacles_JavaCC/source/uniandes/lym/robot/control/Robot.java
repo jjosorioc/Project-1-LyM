@@ -243,7 +243,6 @@ public class Robot implements RobotConstants {
     jj_consume_token(NUMERO);
           valor = Integer.parseInt(token.image);
           varDefinidas.put(llave, valor);
-          System.out.println(varDefinidas.toString());
   }
 
   final public void to() throws ParseException {
@@ -925,18 +924,13 @@ public class Robot implements RobotConstants {
     return false;
   }
 
-  private boolean jj_3_53() {
-    if (jj_3R_15()) return true;
-    return false;
-  }
-
   private boolean jj_3_14() {
     if (jj_scan_token(ID)) return true;
     return false;
   }
 
-  private boolean jj_3_52() {
-    if (jj_3R_14()) return true;
+  private boolean jj_3_53() {
+    if (jj_3R_15()) return true;
     return false;
   }
 
@@ -948,6 +942,11 @@ public class Robot implements RobotConstants {
     jj_scanpos = xsp;
     if (jj_3_14()) return true;
     }
+    return false;
+  }
+
+  private boolean jj_3_52() {
+    if (jj_3R_14()) return true;
     return false;
   }
 
@@ -971,13 +970,13 @@ public class Robot implements RobotConstants {
     return false;
   }
 
-  private boolean jj_3_47() {
-    if (jj_3R_10()) return true;
+  private boolean jj_3_11() {
+    if (jj_scan_token(NUMERO)) return true;
     return false;
   }
 
-  private boolean jj_3_11() {
-    if (jj_scan_token(NUMERO)) return true;
+  private boolean jj_3_47() {
+    if (jj_3R_10()) return true;
     return false;
   }
 
@@ -1099,13 +1098,13 @@ public class Robot implements RobotConstants {
     return false;
   }
 
-  private boolean jj_3_35() {
-    if (jj_3R_14()) return true;
+  private boolean jj_3_9() {
+    if (jj_scan_token(NUMERO)) return true;
     return false;
   }
 
-  private boolean jj_3_9() {
-    if (jj_scan_token(NUMERO)) return true;
+  private boolean jj_3_35() {
+    if (jj_3R_14()) return true;
     return false;
   }
 
@@ -1155,18 +1154,13 @@ public class Robot implements RobotConstants {
     return false;
   }
 
-  private boolean jj_3_26() {
-    if (jj_3R_6()) return true;
-    return false;
-  }
-
   private boolean jj_3_10() {
     if (jj_scan_token(ID)) return true;
     return false;
   }
 
-  private boolean jj_3_25() {
-    if (jj_3R_5()) return true;
+  private boolean jj_3_26() {
+    if (jj_3R_6()) return true;
     return false;
   }
 
@@ -1178,6 +1172,11 @@ public class Robot implements RobotConstants {
     jj_scanpos = xsp;
     if (jj_3_10()) return true;
     }
+    return false;
+  }
+
+  private boolean jj_3_25() {
+    if (jj_3R_5()) return true;
     return false;
   }
 
