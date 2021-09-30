@@ -146,7 +146,8 @@ void move():
   	  // System.out.println("\""+ token.image + "\"" + " is not defined!"); // Luego toca lanzar un error.
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
   	}
- })
+ }
+| < PARAM >)
 )
 }
 
@@ -386,8 +387,9 @@ void to(): // TODO: Aceptar recursividad
 	ArrayList<String > paramsArray = new ArrayList<String>();
 }
 {
-	< TO >  < ID > (< PARAM >)+ // TODO: Revisar parámetros
-	("\n")*< OUTPUT > (comandosMain() " :c")+
+	< TO >  < ID > (< PARAM >)* // TODO: Revisar parámetros
+	("\n")*< OUTPUT >
+	(comandosMain())+//TODO: params en cada funcion
 	("\n")* < END >
 }
 

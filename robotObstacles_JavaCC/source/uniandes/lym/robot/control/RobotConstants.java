@@ -101,7 +101,6 @@ public interface RobotConstants {
     "\"\\n\"",
     "\"[\"",
     "\"]\"",
-    "\" :c\"",
   };
 
 }
