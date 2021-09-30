@@ -353,7 +353,7 @@ void repeat():
 void ifCommand():
 {}
 {
-	< IF >  < BLOCKEDP > 
+	< IF > ("!")? < BLOCKEDP > 
 	"["
 		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
 		// TODO: Conectar con robot mate
