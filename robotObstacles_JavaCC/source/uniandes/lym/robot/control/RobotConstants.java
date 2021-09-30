@@ -11,53 +11,53 @@ public interface RobotConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int MOVE = 5;
+  int MOVE = 4;
   /** RegularExpression Id. */
-  int RIGHT = 6;
+  int RIGHT = 5;
   /** RegularExpression Id. */
-  int LEFT = 7;
+  int LEFT = 6;
   /** RegularExpression Id. */
-  int ROTATE = 8;
+  int ROTATE = 7;
   /** RegularExpression Id. */
-  int LOOK = 9;
+  int LOOK = 8;
   /** RegularExpression Id. */
-  int DROP = 10;
+  int DROP = 9;
   /** RegularExpression Id. */
-  int FREE = 11;
+  int FREE = 10;
   /** RegularExpression Id. */
-  int PICK = 12;
+  int PICK = 11;
   /** RegularExpression Id. */
-  int POP = 13;
+  int POP = 12;
   /** RegularExpression Id. */
-  int CHECK = 14;
+  int CHECK = 13;
   /** RegularExpression Id. */
-  int BLOCKEDP = 15;
+  int BLOCKEDP = 14;
   /** RegularExpression Id. */
-  int NOP = 16;
+  int NOP = 15;
   /** RegularExpression Id. */
-  int BLOCK = 17;
+  int BLOCK = 16;
   /** RegularExpression Id. */
-  int REPEAT = 18;
+  int REPEAT = 17;
   /** RegularExpression Id. */
-  int IF = 19;
+  int IF = 18;
   /** RegularExpression Id. */
-  int DEFINE = 20;
+  int DEFINE = 19;
   /** RegularExpression Id. */
-  int TO = 21;
+  int TO = 20;
   /** RegularExpression Id. */
-  int OUTPUT = 22;
+  int OUTPUT = 21;
   /** RegularExpression Id. */
-  int END = 23;
+  int END = 22;
   /** RegularExpression Id. */
-  int NUMERO = 24;
+  int NUMERO = 23;
   /** RegularExpression Id. */
-  int DIGIT = 25;
+  int DIGIT = 24;
   /** RegularExpression Id. */
-  int LETRAS = 26;
+  int LETRAS = 25;
   /** RegularExpression Id. */
-  int MAY = 27;
+  int MAY = 26;
   /** RegularExpression Id. */
-  int ID = 28;
+  int ID = 27;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -68,7 +68,6 @@ public interface RobotConstants {
     "\" \"",
     "\"\\r\"",
     "\"\\t\"",
-    "\"\\n\"",
     "\"MOVE\"",
     "\"RIGHT\"",
     "\"LEFT\"",
@@ -95,6 +94,7 @@ public interface RobotConstants {
     "<ID>",
     "\"(\"",
     "\")\"",
+    "\"\\n\"",
     "\"[\"",
     "\"]\"",
     "\" :\"",

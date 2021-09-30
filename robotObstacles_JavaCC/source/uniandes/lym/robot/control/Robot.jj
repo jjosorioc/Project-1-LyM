@@ -71,7 +71,7 @@ SKIP:
 	" "
 	|  "\r"
 	|"\t"
-	|"\n" //TODO: Check
+//	|"\n" //TODO: Check
 }
 
 TOKEN: /* Nombres de Comandos */
@@ -315,9 +315,10 @@ void block():
 	"(" < BLOCK > 
 
 	// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
-	comandosMain()
+	 comandosMain() (comandosMain())*
 
-	")" // Final de paréntesis
+	
+	(")"|("\n")+ ")") // Final de paréntesis
 }
 
 
@@ -353,7 +354,7 @@ void ifCommand():
 	"["
 		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
 		// TODO: Conectar con robot mate
-		comandosMain()
+		comandosMain() (comandosMain())*
 	"]"
 }
 
@@ -382,7 +383,7 @@ void to(): // TODO: Aceptar recursividad
 {}
 {
 	< TO >  < ID > (" :"< ID > (" :" < ID >)*)? // TODO: Revisar parámetros
-	< OUTPUT >
+	("\n")*< OUTPUT >
 	//"\n"
 	// Expresión : comandos sin paréntesis al inicio y final, separados por una nueva línea
 	/*
@@ -394,13 +395,14 @@ TO foo : c : p
  END
 	*/
 	//"\n"
-	< END >
+	("\n")* < END >
 }
 
 
 void comandosMain(): // Todos los comandos separados por nuevas líneas, como aparecería en la interfaz
 { }
 {
+ 	("\n")*
 	(
 	 move()
 | 	 right()
@@ -423,25 +425,27 @@ void comandosMain(): // Todos los comandos separados por nuevas líneas, como ap
 
 
 
-	(
-	 move()
-| 	 right()
-| 	 left()
-| 	 rotate()
-| 	 look()
-| 	 drop()
-| 	 free()
-| 	 pick()
-| 	 pop()
-| 	 check()
-| 	 < NOP >
-| 	 block()
-| 	 repeat()
-| 	 ifCommand()
-| 	 define()
-| 	 to()
-// FIN
-	)*
+
+//	(
+//	 move()
+//| 	 right()
+//| 	 left()
+//| 	 rotate()
+//| 	 look()
+//| 	 drop()
+//| 	 free()
+//| 	 pick()
+//| 	 pop()
+//| 	 check()
+//| 	 < NOP >
+//| 	 block()
+//| 	 repeat()
+//| 	 ifCommand()
+//| 	 define()
+//| 	 to()
+//// FIN
+//	)*
+
 }
 
 
@@ -449,8 +453,8 @@ void comandosMain(): // Todos los comandos separados por nuevas líneas, como ap
 boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarla.
 {}
 {
-	(	  
-	comandosMain()
+	(	 
+	comandosMain() (comandosMain())*
 	 
 	  
 	{return true;}
