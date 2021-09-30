@@ -402,6 +402,14 @@ public class RobotWorld {
 		return this.chips.contains(this.position);
 	}
 	
+	/**
+	 * @return whether there  is an obstacle 
+	 * from (@param  posX,  @param posY) to  new position
+	 * new position is (@param newPos, @param  posY) if @param  dir is WEST or EAST
+	 * new position is (@param posX, @param  newPos) if @param dir is NORTH or SOUTH
+	 * */
+	
+	
 	public boolean blockedInRange(int posX, int posY, int newPos, int dir) {
 		boolean checkBlocked = false;
 		if(dir==NORTH) {
@@ -416,7 +424,7 @@ public class RobotWorld {
 			for(int i=posX; i <= newPos && !checkBlocked; i++) {
 				checkBlocked = isBlocked(new Point(i, posY));
 			}
-		} else if(dir==NORTH) {
+		} else if(dir==WEST) {
 			for(int i=posX; i >= newPos && !checkBlocked; i--) {
 				checkBlocked = isBlocked(new Point(i, posY));
 			}
