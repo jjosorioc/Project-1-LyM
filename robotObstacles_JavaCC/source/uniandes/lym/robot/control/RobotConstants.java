@@ -58,6 +58,8 @@ public interface RobotConstants {
   int MAY = 27;
   /** RegularExpression Id. */
   int ID = 28;
+  /** RegularExpression Id. */
+  int PARAM = 29;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -93,12 +95,13 @@ public interface RobotConstants {
     "<LETRAS>",
     "<MAY>",
     "<ID>",
+    "<PARAM>",
     "\"(\"",
     "\")\"",
     "\"\\n\"",
     "\"[\"",
     "\"]\"",
-    "\" :\"",
+    "\" :c\"",
   };
 
 }

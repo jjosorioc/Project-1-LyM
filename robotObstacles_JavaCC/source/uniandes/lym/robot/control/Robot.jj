@@ -129,6 +129,7 @@ TOKEN :
 	| < #LETRAS: ["a"-"z"] >
 	| < #MAY: ["A"-"Z"] >
 	| < ID: (< LETRAS >|< MAY >|< NUMERO >)+ >
+	| < PARAM: (":" (< LETRAS >|< MAY >)+)>
 		
 }
 
@@ -385,9 +386,8 @@ void to(): // TODO: Aceptar recursividad
 	ArrayList<String > paramsArray = new ArrayList<String>();
 }
 {
-	< TO >  < ID > (" :" < ID >)* // TODO: Revisar parámetros
-	("\n")*< OUTPUT >
-	(comandosMain())+
+	< TO >  < ID > (< PARAM >)+ // TODO: Revisar parámetros
+	("\n")*< OUTPUT > (comandosMain() " :c")+
 	("\n")* < END >
 }
 
