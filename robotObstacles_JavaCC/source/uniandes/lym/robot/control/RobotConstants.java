@@ -11,51 +11,53 @@ public interface RobotConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int MOVE = 4;
+  int MOVE = 5;
   /** RegularExpression Id. */
-  int RIGHT = 5;
+  int RIGHT = 6;
   /** RegularExpression Id. */
-  int LEFT = 6;
+  int LEFT = 7;
   /** RegularExpression Id. */
-  int ROTATE = 7;
+  int ROTATE = 8;
   /** RegularExpression Id. */
-  int LOOK = 8;
+  int LOOK = 9;
   /** RegularExpression Id. */
-  int DROP = 9;
+  int DROP = 10;
   /** RegularExpression Id. */
-  int FREE = 10;
+  int FREE = 11;
   /** RegularExpression Id. */
-  int PICK = 11;
+  int PICK = 12;
   /** RegularExpression Id. */
-  int POP = 12;
+  int POP = 13;
   /** RegularExpression Id. */
-  int CHECK = 13;
+  int CHECK = 14;
   /** RegularExpression Id. */
-  int BLOCKEDP = 14;
+  int BLOCKEDP = 15;
   /** RegularExpression Id. */
-  int NOP = 15;
+  int NOP = 16;
   /** RegularExpression Id. */
-  int BLOCK = 16;
+  int BLOCK = 17;
   /** RegularExpression Id. */
-  int REPEAT = 17;
+  int REPEAT = 18;
   /** RegularExpression Id. */
-  int IF = 18;
+  int IF = 19;
   /** RegularExpression Id. */
-  int DEFINE = 19;
+  int DEFINE = 20;
   /** RegularExpression Id. */
-  int TO = 20;
+  int TO = 21;
   /** RegularExpression Id. */
-  int OUTPUT = 21;
+  int OUTPUT = 22;
   /** RegularExpression Id. */
-  int END = 22;
+  int END = 23;
   /** RegularExpression Id. */
-  int NUMERO = 23;
+  int NUMERO = 24;
   /** RegularExpression Id. */
-  int DIGIT = 24;
+  int DIGIT = 25;
   /** RegularExpression Id. */
-  int LETRAS = 25;
+  int LETRAS = 26;
   /** RegularExpression Id. */
-  int ID = 26;
+  int MAY = 27;
+  /** RegularExpression Id. */
+  int ID = 28;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -63,6 +65,7 @@ public interface RobotConstants {
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
+    "\" \"",
     "\"\\r\"",
     "\"\\t\"",
     "\"\\n\"",
@@ -88,8 +91,8 @@ public interface RobotConstants {
     "<NUMERO>",
     "<DIGIT>",
     "<LETRAS>",
+    "<MAY>",
     "<ID>",
-    "\" \"",
     "\"(\"",
     "\")\"",
     "\"[\"",

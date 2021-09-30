@@ -68,10 +68,10 @@ PARSER_END(Robot)
 
 SKIP:
 {
-	//" "
-	 "\r"
+	" "
+	|  "\r"
 	|"\t"
-	|"\n" //el new line es necesario para los bloques.
+	|"\n" //TODO: Check
 }
 
 TOKEN: /* Nombres de Comandos */
@@ -126,7 +126,8 @@ TOKEN :
 	|  	<#DIGIT: ["0"-"9"] >
 	// Identifier
 	| < #LETRAS: ["a"-"z"] >
-	| < ID: (< LETRAS >)+ >
+	| < #MAY: ["A"-"Z"] >
+	| < ID: (< LETRAS >|< MAY >|< NUMERO >)+ >
 		
 }
 
@@ -135,7 +136,7 @@ TOKEN :
 void move():
 {}
 {
-  < MOVE > " " (< NUMERO >
+  < MOVE >  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -151,7 +152,7 @@ void move():
 void right():
 { }
 {
-	< RIGHT > " " (< NUMERO >
+	< RIGHT >  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -167,7 +168,7 @@ void right():
 void left():
 { }
 {
-	< LEFT > " " (< NUMERO >
+	< LEFT >  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -183,7 +184,7 @@ void left():
 void rotate():
 { }
 {
-	< ROTATE > " " (< NUMERO >
+	< ROTATE >  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -201,7 +202,7 @@ void look():
 	ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("N", "S", "E", "W"));
 }
 {
-	< LOOK > " " < ID >
+	< LOOK >  < ID >
 	{
 
 	if (!(charValidos.contains(token.image))) // Check if CHAR is in charValidos
@@ -215,7 +216,7 @@ void look():
 void drop():
 { }
 {
-	< DROP> " " (< NUMERO >
+	< DROP>  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -231,7 +232,7 @@ void drop():
 void free():
 { }
 {
-	< FREE > " " (< NUMERO >
+	< FREE >  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -247,7 +248,7 @@ void free():
 void pick():
 { }
 {
-	< PICK > " " (< NUMERO >
+	< PICK >  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -263,7 +264,7 @@ void pick():
 void pop():
 { }
 {
-	< POP > " " (< NUMERO >
+	< POP >  (< NUMERO >
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -281,14 +282,14 @@ void check():
 	ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("C", "B"));
 }
 {
-	< CHECK > " " < ID >
+	< CHECK >  < ID >
 	{
 		if(!(charValidos.contains(token.image)))
 		{
 			throw new Error("\""+ token.image + "\"" + " should be \"C\" or \"B\"!");
 		}
 	}
-	" "
+	
 	(< NUMERO >
 | 	(< ID >
 {
@@ -311,7 +312,7 @@ void check():
 void block():
 {}
 {
-	"(" < BLOCK > " "
+	"(" < BLOCK > 
 
 	// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
 	comandosMain()
@@ -323,7 +324,7 @@ void block():
 void repeat():
 {}
 {
-	< REPEAT > " "
+	< REPEAT > 
 	(		< NUMERO >
 | 		(			< ID >
 			{
@@ -336,7 +337,7 @@ void repeat():
 		)
 	)
 
-	" "
+	
 
 	"["
 		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
@@ -348,7 +349,7 @@ void repeat():
 void ifCommand():
 {}
 {
-	< IF > " " < BLOCKEDP > " "
+	< IF >  < BLOCKEDP > 
 	"["
 		// TODO: Comandos/ Toca hacer una RP para que se incluyan los comandos separados por /n
 		// TODO: Conectar con robot mate
@@ -363,16 +364,17 @@ void define():
 	int valor = 0;
 }
 {
-	< DEFINE > " " < ID >
+	< DEFINE >  < ID >
 	{
 	  llave = token.image;
 	}
 
 
-	" " < NUMERO >
+	 < NUMERO >
 	{
 	  valor = Integer.parseInt(token.image);
 	  varDefinidas.put(llave, valor);
+	  System.out.println(varDefinidas.toString());
 	}
 }
 
@@ -380,7 +382,7 @@ void define():
 void to(): // TODO: Aceptar recursividad
 {}
 {
-	< TO > " " < ID > (" :"< ID > (" :" < ID >)*)? // TODO: Revisar parámetros
+	< TO >  < ID > (" :"< ID > (" :" < ID >)*)? // TODO: Revisar parámetros
 	< OUTPUT >
 	//"\n"
 	// Expresión : comandos sin paréntesis al inicio y final, separados por una nueva línea
