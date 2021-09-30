@@ -69,6 +69,7 @@ PARSER_END(Robot)
 SKIP:
 {
 	" "
+	| "    "
 	|  "\r"
 	|"\t"
 //	|"\n" //TODO: Check
@@ -380,21 +381,13 @@ void define():
 
 
 void to(): // TODO: Aceptar recursividad
-{}
 {
-	< TO >  < ID > (" :"< ID > (" :" < ID >)*)? // TODO: Revisar parámetros
+	ArrayList<String > paramsArray = new ArrayList<String>();
+}
+{
+	< TO >  < ID > (" :" < ID >)* // TODO: Revisar parámetros
 	("\n")*< OUTPUT >
-	//"\n"
-	// Expresión : comandos sin paréntesis al inicio y final, separados por una nueva línea
-	/*
-TO foo : c : p
- OUTPUT
- 	DROP : c
- 	FREE : p
- 	MOVE one
- END
-	*/
-	//"\n"
+	(comandosMain())+
 	("\n")* < END >
 }
 
@@ -422,31 +415,8 @@ void comandosMain(): // Todos los comandos separados por nuevas líneas, como ap
 | 	 to()
 // FIN
 	)
-
-
-
-
-//	(
-//	 move()
-//| 	 right()
-//| 	 left()
-//| 	 rotate()
-//| 	 look()
-//| 	 drop()
-//| 	 free()
-//| 	 pick()
-//| 	 pop()
-//| 	 check()
-//| 	 < NOP >
-//| 	 block()
-//| 	 repeat()
-//| 	 ifCommand()
-//| 	 define()
-//| 	 to()
-//// FIN
-//	)*
-
 }
+
 
 
 // Coso raro que es como el start symbol
