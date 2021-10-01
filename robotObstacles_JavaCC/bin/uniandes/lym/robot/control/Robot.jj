@@ -538,15 +538,25 @@ void repeat(): // TODO
 
 void ifCommand(): // TODO: ejecutar si es true
 {
-	boolean resultado = false;
+	boolean resultado = false; // TRUE SI ESTÁ BLOCKED
 }
 {
 	< IF > ("!")? resultado = blockedp() ("\n")* // TODO: Aceptar !
 	"["
+	{
+
+		if (!resultado) // Esto se ejecuta cuando resultado es falso
+		{
+			while (!token.image.equals("]"))
+			{
+				token = getNextToken();
+			}
+		}
+	}
 		
-	(comandosMain())+
+	(comandosMain())*
 	("\n")*
-	"]"
+	("]")?
 }
 
 
