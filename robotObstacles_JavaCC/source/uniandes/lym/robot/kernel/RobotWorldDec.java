@@ -38,26 +38,36 @@ public class RobotWorldDec extends RobotWorld {
 
 	/**
 	* Used to move the robot horizontally on the board
-	* @param  steps to move (if steps > 0 it moves to the right; if steps < 0 it moves to the left. 
+	* @param  steps to move (if steps > 0 it moves to the right of the board; if steps < 0 it moves to the left. 
 	* @throws  Error if the robot ends up outside the board
 	*/
 	public void moveHorizontally(int steps) throws Error {
 		Point p =getPosition();
 		int tam = getN();
-		int newX;
+		int newX, i;
 		
 		newX = p.x+steps;
+		
+		int dir = 5;
+		if(p.x - newX > 0)
+			dir = WEST;
+		else
+			dir = EAST;
 		
 		if (newX > tam) 
 			throw new Error("Fell off  the right");
     	else if (newX < 1) 
 			throw new Error("Fell off the left");
-		else { 
+
+    	else if(blockedInRange(p.x, p.y, newX, dir))
+			throw new Error("There is an obstacle in the path");
+		
+    	else { 
 			if (steps >= 0)  {
-				for (int i=0; i<steps; i++)	
+				for (i=0; i<steps; i++)	
             		right();        
     		} else {
-				for (int i=0; i>steps; i--) 
+				for (i=0; i>steps; i--) 
             		left();
      		}
 		}
