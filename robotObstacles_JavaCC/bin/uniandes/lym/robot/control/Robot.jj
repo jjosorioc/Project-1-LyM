@@ -539,11 +539,26 @@ void repeat(): // TODO
 void ifCommand(): // TODO: ejecutar si es true
 {
 	boolean resultado = false; // TRUE SI ESTÁ BLOCKED
+
+	boolean estaNegado = false;
 }
 {
-	< IF > ("!")? resultado = blockedp() ("\n")* // TODO: Aceptar !
+	< IF >
+	{
+	if (token.next.toString().equals("!"))
+		{
+			estaNegado = true;
+		}
+
+	}
+
+	("!")? resultado = blockedp() ("\n")* // TODO: Aceptar !
 	"["
 	{
+	  	if (estaNegado) // Si está negado
+	  	{
+			resultado = !resultado;
+	  	}
 
 		if (!resultado) // Esto se ejecuta cuando resultado es falso
 		{
