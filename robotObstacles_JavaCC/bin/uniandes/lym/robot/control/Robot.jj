@@ -165,10 +165,32 @@ void right():
 { }
 {
 	< RIGHT >  (< NUMERO >
-//	{
-//	  int grados = Integer.parseInt(token.image);
-//		if (0 <= grados and
-//	}
+	{
+	  int valorNum = Integer.parseInt(token.image); // valor del token como int
+
+	  if (valorNum < 0 || valorNum > 360) // if valorNum is not in the accepted range
+	  {
+		   throw new Error("Degrees should be in [0, 360]!");
+	  }
+	  else { 
+
+		  if (0 < valorNum && valorNum <= 90) // Clockwise
+		  {
+		    world.turnRight();
+		  }
+		  else if (90 < valorNum && valorNum <= 180)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (180 < valorNum && valorNum <= 270)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		}
+	}
 
   
 | 	(< ID >
@@ -177,6 +199,32 @@ void right():
   {
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
   }
+  else{
+	  int valorNum = varDefinidas.get(token.image); 
+
+	  if (valorNum < 0 || valorNum > 360) // if valorNum is not in the accepted range
+	  {
+		   throw new Error("Degrees should be in [0, 360]!");
+	  }
+	  else { 
+
+		  if (0 < valorNum && valorNum <= 90) // Clockwise
+		  {
+		    world.turnRight();
+		  }
+		  else if (90 < valorNum && valorNum <= 180)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (180 < valorNum && valorNum <= 270)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		}
+	}
   
 }
 | < PARAM >))
@@ -206,10 +254,11 @@ void left():
 }
 
 
-void rotate(): //TODO
+void rotate()://TODO
 { }
 {
-	< ROTATE >  (< NUMERO >
+	< ROTATE >  (< NUMERO > // Se asume que el # de grados está entre 0 <= # <= 360
+	
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
