@@ -236,7 +236,30 @@ void left():
 {
 	< LEFT >  (< NUMERO >
 	{
-		world.moveForward(Integer.parseInt(token.image));
+	  int valorNum = Integer.parseInt(token.image); // valor del token como int
+
+	  if (valorNum < 0 || valorNum > 360) // if valorNum is not in the accepted range
+	  {
+		   throw new Error("Degrees should be in [0, 360]!");
+	  }
+	  else { 
+
+		  if (0 < valorNum && valorNum <= 90) // Clockwise
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (90 < valorNum && valorNum <= 180)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (180 < valorNum && valorNum <= 270)
+		  {
+		    world.turnRight();
+		  }
+		}
 	}
 
   
@@ -520,11 +543,12 @@ void repeat():
 void ifCommand():
 {}
 {
-	< IF > ("!")? blockedp() // TODO: Aceptar !
+	< IF > ("!")? blockedp() ("\n")* // TODO: Aceptar !
 	"["
 		
 		// TODO: Conectar con robot mate
 		(comandosMain())+
+	("\n")*
 	"]"
 }
 
