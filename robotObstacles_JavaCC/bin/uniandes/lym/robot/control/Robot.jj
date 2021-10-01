@@ -494,6 +494,8 @@ boolean blockedp():
 }
 
 
+
+
 // NOP
 
 
@@ -534,14 +536,15 @@ void repeat(): // TODO
 }
 
 
-void ifCommand():
-{}
+void ifCommand(): // TODO: ejecutar si es true
 {
-	< IF > ("!")? blockedp() ("\n")* // TODO: Aceptar !
+	boolean resultado = false;
+}
+{
+	< IF > ("!")? resultado = blockedp() ("\n")* // TODO: Aceptar !
 	"["
 		
-		// TODO: Conectar con robot mate
-		(comandosMain())+
+	(comandosMain())+
 	("\n")*
 	"]"
 }
