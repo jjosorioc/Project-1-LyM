@@ -52,7 +52,6 @@ import java.util.Random;
 @SuppressWarnings("serial")
 public class Robot 
 {
-	// ArrayList<String > varDefinidas = new ArrayList(); // Variables definidas
 
 	HashMap<String, Integer > varDefinidas = new HashMap<String, Integer >();
 
@@ -399,6 +398,7 @@ void look():
 	}
 }
 
+
 void drop():
 { }
 {
@@ -485,7 +485,7 @@ void pop():
 }
 
 
-boolean check():// TODO: retorna un boolean?
+boolean check():
 {
 	ArrayList<String> charValidos = new ArrayList<String>(Arrays.asList("C", "B"));
 	String opcion = "";
@@ -622,23 +622,6 @@ void repeat():
 	}
 	System.out.println("PRIMERO: "+ principio);
    }
-//		{
-//		  	Token firstToken = getToken(0); // TODO
-//			while (!token.image.toString().equals("]"))
-//			{
-//			  	token = getNextToken();
-//				repetidos.add(token);
-//			}
-//			System.out.println(firstToken);
-//
-//			System.out.println(repetidos);
-//			token = firstToken;
-//			token = principio;
-//		}
-
-	
-
-   
 		(comandosMain())*
 	
 	
@@ -722,7 +705,7 @@ void define():
 }
 
 
-void to(): // TODO: Aceptar recursividad
+void to(): 
 {
 	ArrayList<String > paramsArray = new ArrayList<String>();
 }
@@ -734,10 +717,10 @@ void to(): // TODO: Aceptar recursividad
 	}
 
 
-	(< PARAM >)* // TODO: Revisar parámetros
+	(< PARAM >)*
 	("\n")*< OUTPUT >
 	
-	(comandosMain() // TODO: Crear NT para guardar tokens.
+	(comandosMain()
 	{
 		paramsArray.add(token.image);
 	}
@@ -789,7 +772,7 @@ boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarl
 {}
 {
 	(	 
-	comandosMain() (comandosMain())*
+	(comandosMain())+
 	 
 	  
 	{return true;}
