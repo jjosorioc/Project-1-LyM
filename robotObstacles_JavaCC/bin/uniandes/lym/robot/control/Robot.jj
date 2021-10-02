@@ -512,14 +512,23 @@ void block():
 }
 
 
-void repeat(): // TODO
+void repeat():
 {
-	ArrayList<Token > repetidos = new ArrayList();
+ ArrayList<Token > repetidos = new ArrayList();
+ Integer veces = 0;
+ }
+ {
 
-}
-{
+   {
+	Token principio = getToken(0);
+   }
+   
 	< REPEAT > 
 	(		< NUMERO >
+		{
+			veces = Integer.parseInt(token.image);
+
+		}
 | 		(			< ID >
 			{
   				if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
@@ -544,9 +553,13 @@ void repeat(): // TODO
 
 			System.out.println(repetidos);
 			token = firstToken;
+			token = principio;
 		}
 		(comandosMain())*
+	("\n")*
 	("]")
+
+	
 }
 
 
