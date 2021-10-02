@@ -519,17 +519,17 @@ void repeat():
  }
  {
 
-   {
-	Token principio = getToken(0);
-   }
+
    
 	< REPEAT > 
-	(		< NUMERO >
+	(
+		< NUMERO >
 		{
 			veces = Integer.parseInt(token.image);
 
 		}
-| 		(			< ID >
+| 		(
+			< ID >
 			{
   				if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   					{
@@ -539,29 +539,56 @@ void repeat():
 		| < PARAM >))
 	
 
-	
+
 
 	"["
 		{
-		  	Token firstToken = getToken(0); // TODO
-			while (!token.image.toString().equals("]"))
-			{
-			  	token = getNextToken();
-				repetidos.add(token);
-			}
-			System.out.println(firstToken);
+	Token principio = getNextToken();
+	while (!principio.image.toString().equals("\n") && !principio.image.toString().equals("["))
+	{
 
-			System.out.println(repetidos);
-			token = firstToken;
-			token = principio;
-		}
-		(comandosMain())*
-	("\n")*
-	("]")
+		principio = getNextToken();
+	}
+	System.out.println("PRIMERO: "+ principio);
+   }
+//		{
+//		  	Token firstToken = getToken(0); // TODO
+//			while (!token.image.toString().equals("]"))
+//			{
+//			  	token = getNextToken();
+//				repetidos.add(token);
+//			}
+//			System.out.println(firstToken);
+//
+//			System.out.println(repetidos);
+//			token = firstToken;
+//			token = principio;
+//		}
 
 	
-}
 
+   
+		(comandosMain())*
+	
+	
+	("\n")*
+	("]")
+	{
+		if (veces >= 0)
+		{
+		  	while (veces > 0) { 
+			System.out.println("SEGUNDO: "+token);
+			veces --;
+			token = principio;
+//			System.out.println(token);
+			System.out.println(veces);
+	}
+		}else {
+		token = getNextToken();
+		}
+	}
+	
+}
 
 void ifCommand(): // TODO: ejecutar si es true
 {
