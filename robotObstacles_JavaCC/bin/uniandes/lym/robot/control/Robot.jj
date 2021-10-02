@@ -513,7 +513,10 @@ void block():
 
 
 void repeat(): // TODO
-{}
+{
+	ArrayList<Token > repetidos = new ArrayList();
+
+}
 {
 	< REPEAT > 
 	(		< NUMERO >
@@ -530,9 +533,20 @@ void repeat(): // TODO
 	
 
 	"["
-		
-		(comandosMain())+
-	"]"
+		{
+		  	Token firstToken = getToken(0); // TODO
+			while (!token.image.toString().equals("]"))
+			{
+			  	token = getNextToken();
+				repetidos.add(token);
+			}
+			System.out.println(firstToken);
+
+			System.out.println(repetidos);
+			token = firstToken;
+		}
+		(comandosMain())*
+	("]")
 }
 
 
@@ -562,16 +576,18 @@ void ifCommand(): // TODO: ejecutar si es true
 
 		if (!resultado) // Esto se ejecuta cuando resultado es falso
 		{
+		  	Token firstToken = getToken(0);
 			while (!token.image.equals("]"))
 			{
 				token = getNextToken();
 			}
+			token = firstToken; // Vuelve a donde inicio el loop
 		}
 	}
 		
-	(comandosMain())*
+	(comandosMain())+
 	("\n")*
-	("]")?
+	("]")
 }
 
 
