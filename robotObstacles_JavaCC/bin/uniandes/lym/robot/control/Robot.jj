@@ -172,7 +172,7 @@ void right():
 	  {
 		   throw new Error("Degrees should be in [0, 360]!");
 	  }
-	  else { 
+	  else { // Si el valor es valido
 
 		  if (valorNum == 90) // Clockwise
 		  {
@@ -193,20 +193,20 @@ void right():
 	}
 
   
-| 	(< ID >
+| 	(< ID > // variable
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
   {
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
   }
-  else{
+  else{ // si contiene el token.image
 	  int valorNum = varDefinidas.get(token.image); 
 
 	  if (valorNum < 0 || valorNum > 360) // if valorNum is not in the accepted range
 	  {
 		   throw new Error("Degrees should be in [0, 360]!");
 	  }
-	  else { 
+	  else { // si el valor es valido
 
 		  if (valorNum == 90) // Clockwise
 		  {
@@ -242,9 +242,9 @@ void left():
 	  {
 		   throw new Error("Degrees should be in [0, 360]!");
 	  }
-	  else { 
+	  else { // Si el valor es valido
 
-		  if (valorNum == 90) // Clockwise
+		  if (valorNum == 90)
 		  {
 		    world.turnRight();
 		    world.turnRight();
@@ -269,7 +269,32 @@ void left():
   {
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
   }else{
-		world.moveForward(varDefinidas.get(token.image)); // Move the robot
+		{
+	  int valorNum = varDefinidas.get(token.image); // valor del token como int
+
+	  if (valorNum < 0 || valorNum > 360) // if valorNum is not in the accepted range
+	  {
+		   throw new Error("Degrees should be in [0, 360]!");
+	  }
+	  else { // Si el valor es valido
+
+		  if (valorNum == 90) // Clockwise
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (valorNum == 180)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (valorNum == 270)
+		  {
+		    world.turnRight();
+		  }
+		}
+	}
 		}
   
 }
@@ -307,7 +332,7 @@ void rotate()://TODO
  }
 | < PARAM >))
 {
-	  if (randomNum == 0) { 
+	  if (randomNum == 0) {  // Gira a la izquierda
 
 	  if (grados < 0 || grados > 360) // if grados is not in the accepted range
 	  {
@@ -315,7 +340,7 @@ void rotate()://TODO
 	  }
 	  else { 
 
-		  if (grados == 90) // Clockwise
+		  if (grados == 90)
 		  {
 		    world.turnRight();
 		    world.turnRight();
@@ -338,7 +363,7 @@ void rotate()://TODO
 	  {
 		   throw new Error("Degrees should be in [0, 360]!");
 	  }
-	  else { 
+	  else { // Gira a la derecha
 
 		  if (grados == 90) // Clockwise
 		  {
@@ -380,7 +405,7 @@ void look():
 	{
 		throw new Error("\""+ token.image + "\"" + " should be either \"N\", \"S\", \"E\", \"W\"!");
 	}
-	else
+	else // Si es valido
 	{
 		boolean centinela = true;
 		while (centinela)
@@ -389,12 +414,9 @@ void look():
 			{
 				world.turnRight();	
 			}
-			else { centinela = false; }
-
+			else { centinela = false; } // se termina el while
 		}
-
 	 }
-
 	}
 }
 
@@ -644,6 +666,7 @@ void repeat():
 	
 }
 
+
 void ifCommand():
 {
 	boolean resultado = false; // TRUE SI ESTÁ BLOCKED
@@ -700,7 +723,7 @@ void define():
 	 < NUMERO >
 	{
 	  valor = Integer.parseInt(token.image);
-	  varDefinidas.put(llave, valor);
+	  varDefinidas.put(llave, valor); // Se agrega al Hash
 	}
 }
 
@@ -763,12 +786,12 @@ void functionFunction():
 < ID >{
     if(!(funcDefinidas.containsKey(token.image)))// Check if token.image is in the Array
     {throw new Error("\""+ token.image + "\"" + " is not defined!");}}
-   }
-	
+}
 
 
-// Coso raro que es como el start symbol
-boolean command(StringBuffer sistema) : //No sé para qué es ni cómo utilizarla.
+
+// Start Symbol
+boolean command(StringBuffer sistema):
 {}
 {
 	(	 
