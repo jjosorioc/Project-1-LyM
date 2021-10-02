@@ -670,10 +670,20 @@ void comandosMain(): // Todos los comandos separados por nuevas líneas, como ap
 | 	 ifCommand()
 | 	 define()
 | 	 to()
+| 	 functionFunction()
 // FIN
 	)
 }
 
+void functionFunction():
+{}
+{
+
+< ID >{
+    if(!(funcDefinidas.containsKey(token.image)))// Check if token.image is in the Array
+    {throw new Error("\""+ token.image + "\"" + " is not defined!");}}
+   }
+	
 
 
 // Coso raro que es como el start symbol
