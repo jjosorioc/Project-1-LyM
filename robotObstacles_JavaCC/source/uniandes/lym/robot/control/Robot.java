@@ -66,16 +66,16 @@ public class Robot implements RobotConstants {
           }
           else {
 
-                  if (0 < valorNum && valorNum <= 90) // Clockwise
+                  if (valorNum == 90) // Clockwise
                   {
                     world.turnRight();
                   }
-                  else if (90 < valorNum && valorNum <= 180)
+                  else if (valorNum == 180)
                   {
                     world.turnRight();
                     world.turnRight();
                   }
-                  else if (180 < valorNum && valorNum <= 270)
+                  else if (valorNum == 270)
                   {
                     world.turnRight();
                     world.turnRight();
@@ -98,16 +98,16 @@ public class Robot implements RobotConstants {
           }
           else {
 
-                  if (0 < valorNum && valorNum <= 90) // Clockwise
+                  if (valorNum == 90) // Clockwise
                   {
                     world.turnRight();
                   }
-                  else if (90 < valorNum && valorNum <= 180)
+                  else if (valorNum == 180)
                   {
                     world.turnRight();
                     world.turnRight();
                   }
-                  else if (180 < valorNum && valorNum <= 270)
+                  else if (valorNum == 270)
                   {
                     world.turnRight();
                     world.turnRight();
@@ -139,18 +139,18 @@ public class Robot implements RobotConstants {
           }
           else {
 
-                  if (0 < valorNum && valorNum <= 90) // Clockwise
+                  if (valorNum == 90) // Clockwise
                   {
                     world.turnRight();
                     world.turnRight();
                     world.turnRight();
                   }
-                  else if (90 < valorNum && valorNum <= 180)
+                  else if (valorNum == 180)
                   {
                     world.turnRight();
                     world.turnRight();
                   }
-                  else if (180 < valorNum && valorNum <= 270)
+                  else if (valorNum == 270)
                   {
                     world.turnRight();
                   }
@@ -499,7 +499,7 @@ public class Robot implements RobotConstants {
   }
 
   final public void ifCommand() throws ParseException {
-        boolean resultado = false; // TRUE SI ESTÃ? BLOCKED
+        boolean resultado = false; // TRUE SI ESTÃ BLOCKED
 
         boolean estaNegado = false;
     jj_consume_token(IF);
