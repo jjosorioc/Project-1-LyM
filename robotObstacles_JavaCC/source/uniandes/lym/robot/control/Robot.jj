@@ -47,6 +47,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 @SuppressWarnings("serial")
 public class Robot 
@@ -278,18 +279,88 @@ void left():
 
 
 void rotate()://TODO
-{ }
 {
+	int randomNum = 0; // Un num 0 y 1. 0 es izquierda, 1 derecha
+
+	int grados = 0;
+}
+{
+	{
+	Random r = new Random();
+	int result = r.nextInt(2);
+	randomNum = result;
+	}
+
+  
 	< ROTATE >  (< NUMERO > // Se asume que el # de grados está entre 0 <= # <= 360
-	
+	{
+	grados = Integer.parseInt(token.image);
+	}
 | 	(< ID >
 {
   if(!(varDefinidas.containsKey(token.image)))// Check if token.image is in the Array
     {
   	  throw new Error("\""+ token.image + "\"" + " is not defined!");
   	}
+  	else {
+		grados = varDefinidas.get(token.image);
+  	}
  }
 | < PARAM >))
+{
+	  if (randomNum == 0) { 
+
+	  if (grados < 0 || grados > 360) // if grados is not in the accepted range
+	  {
+		   throw new Error("Degrees should be in [0, 360]!");
+	  }
+	  else { 
+
+		  if (grados == 90) // Clockwise
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (grados == 180)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (grados == 270)
+		  {
+		    world.turnRight();
+		  }
+		}
+}else {
+
+
+	  if (grados < 0 || grados > 360) // if grados is not in the accepted range
+	  {
+		   throw new Error("Degrees should be in [0, 360]!");
+	  }
+	  else { 
+
+		  if (grados == 90) // Clockwise
+		  {
+		    world.turnRight();
+		  }
+		  else if (grados == 180)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		  else if (grados == 270)
+		  {
+		    world.turnRight();
+		    world.turnRight();
+		    world.turnRight();
+		  }
+		}
+
+}
+	}
+
 }
 
 
@@ -590,7 +661,7 @@ void repeat():
 	
 }
 
-void ifCommand(): // TODO: ejecutar si es true
+void ifCommand():
 {
 	boolean resultado = false; // TRUE SI ESTÁ BLOCKED
 
@@ -606,7 +677,7 @@ void ifCommand(): // TODO: ejecutar si es true
 
 	}
 
-	("!")? resultado = blockedp() ("\n")* // TODO: Aceptar !
+	("!")? resultado = blockedp() ("\n")* 
 	"["
 	{
 	  	if (estaNegado) // Si está negado
